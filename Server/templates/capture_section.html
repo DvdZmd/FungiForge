@@ -1,0 +1,32 @@
+<div style="margin-top: 30px; text-align: center;">
+    <h3>Capture Image</h3>
+    <label for="pictureResolution">Picture Resolution:</label>
+    <select id="pictureResolution">
+      {% for r in resolutions %}
+        <option value="{{ r[0] }}x{{ r[1] }}">{{ r[0] }}x{{ r[1] }}</option>
+      {% endfor %}
+    </select>
+  
+    <br /><br />
+    <button id="captureBtn">Capture Image</button>
+    <div id="captureStatus" style="margin-top: 10px;"></div>
+  </div>
+  
+  <div style="margin-top: 30px; text-align: center;">
+    <h3>Timelapse Settings</h3>
+    <label for="timelapseInterval">Interval (minutes):</label>
+    <input type="number" id="timelapseInterval" min="1" value="5" />
+  
+    <br /><br />
+    <label for="timelapseResolution">Timelapse Resolution:</label>
+    <select id="timelapseResolution">
+      {% for r in resolutions %}
+        <option value="{{ r[0] }}x{{ r[1] }}">{{ r[0] }}x{{ r[1] }}</option>
+      {% endfor %}
+    </select>
+  
+    <br /><br />
+    <button id="timelapseToggleBtn">Start Timelapse</button>
+    <div id="timelapseStatus" style="margin-top: 10px;"></div>
+  </div>
+  

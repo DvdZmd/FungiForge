@@ -1,0 +1,13 @@
+[Unit]
+Description=Fungi Forge App
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=${FUNGIFORCE_PATH}/init.sh
+Restart=always
+User=pi
+WorkingDirectory=${FUNGIFORCE_PATH}
+
+[Install]
+WantedBy=multi-user.target

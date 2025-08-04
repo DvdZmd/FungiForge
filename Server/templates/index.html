@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pan & Tilt Control</title>
+
+  <!-- Inject Flask variables -->
+  <script>
+    window.read_servos = {{ read_servos | tojson }};
+    window.read_sensors = {{ read_sensors | tojson }};
+    window.inverted_pan = {{ inverted_pan | tojson }};
+    window.inverted_tilt = {{ inverted_tilt | tojson }};
+    window.resolutions = {{ resolutions | tojson }};
+  </script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <h1>Pan & Tilt Control</h1>
+
+  <div class="main-container">
+    <div class="status">
+  <h3>Smart Plug Control</h3>
+  <button id="smartPlugBtn">Toggle Light</button>
+  <span id="smartPlugStatus"></span>
+</div>
+    {% include 'video_feed.html' %}
+    {% include 'status_panel.html' %}
+    
+  </div>
+  <div class="main-container">
+    {% include 'capture_section.html' %}
+  </div>
+
+  <div class="main-container">
+    <h2>Sensor Readings History</h2>
+    <button id="loadHistoryBtn">📊 Load History</button>
+
+    <!-- Filters -->
+    <div class="filters">
+      <label>Start Date: <input type="date" id="startDate"></label>
+      <label>End Date: <input type="date" id="endDate"></label>
+      <label>Min Temp Air: <input type="number" id="minTempAir" step="0.1"></label>
+      <label>Max Temp Air: <input type="number" id="maxTempAir" step="0.1"></label>
+      <label>Min Moisture: <input type="number" id="minMoisture" step="1"></label>
+      <label>Max Moisture: <input type="number" id="maxMoisture" step="1"></label>
+      <button id="applyFiltersBtn">🔍 Apply Filters</button>
+    </div>
+
+    <!-- Results -->
+    <div id="historyResults"></div>
+    <div id="paginationControls"></div>
+  </div>
+
+
+  <!-- JS -->
+  <script type="module" src="{{ url_for('static', filename='main.js') }}"></script>
+  <script src="{{ url_for('static', filename='history.js') }}"></script>
+
+</body>
+</html>

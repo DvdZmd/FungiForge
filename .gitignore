@@ -1,0 +1,19 @@
+# VSCode
+.vscode/
+
+# Ignore Python bytecode files
+.venv/
+
+# Python cache folders
+**/__pycache__/
+
+#Camera pictures
+Server/Pictures
+/Pictures/
+
+# Ignore the faces.db file
+Server/database/faces.db
+Server/database/app.db
+Server/config.py
+
+fungiforge.service
