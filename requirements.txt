@@ -19,6 +19,8 @@ authlib
 face_recognition         # Library for face detection and recognition
 
 # Smart plug control
-tinytuya                # Library for controlling Tuya-based smart plugs and device
-#tuya-connector
-tuya-iot-py-sdk
+tuya-iot-py-sdk          #tuya-connector
+
+
+# Model context management
+modelcontext
