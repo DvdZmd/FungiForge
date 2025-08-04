@@ -2,6 +2,18 @@
 
 # Default camera resolution
 import os
+from dataclasses import dataclass
+
+@dataclass
+class SmartPlugConfig:
+    access_id: str = ""
+    access_key: str = ""
+    api_endpoint: str = ""
+    device_id: str = ""
+    username: str = ""
+    password: str = ""
+    country_code: str = ""
+    api_schema: str = ""
 
 # Logging
 LOG_FILE_PATH = "/home/pi/Desktop/logs/server.log"
@@ -46,7 +58,7 @@ SENSOR_LOG_INTERVAL = '1m'  # Options: '10s', '30s', '1m', '5m', '1h'
 ENABLE_SENSOR_LOGGER = True
 
 # Smart Plug Configuration (TinyTuya)
-SMARTPLUG_DEVICE_ID = 'YOUR_TUYA_DEVICE_ID'     # Tuya device ID
-SMARTPLUG_IP = '192.168.x.x'                    # Smart plug IP address
-SMARTPLUG_LOCAL_KEY = 'LOCAL_KEY'               # Local key for device authentication
-SMARTPLUG_PROTOCOL_VERSION = 3.4                # Tuya protocol version
+SMARTPLUG_DEVICE_ID = ''     # Tuya device ID
+SMARTPLUG_IP = ''                    # Smart plug IP address
+SMARTPLUG_LOCAL_KEY = ''               # Local key for device authentication
+SMARTPLUG_PROTOCOL_VERSION = x.x                # Tuya protocol version
