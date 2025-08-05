@@ -22,3 +22,5 @@ face_recognition         # Library for face detection and recognition
 tinytuya                # Library for controlling Tuya-based smart plugs and device
 #tuya-connector
 tuya-iot-py-sdk
+
+mcp
