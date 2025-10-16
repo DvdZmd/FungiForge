@@ -9,6 +9,7 @@ from routes.smartplug_routes import smartplug_bp
 from routes.auth_routes import auth_bp
 from database.models import db
 from auth.oauth2_server import config_oauth
+from sensors.bluetooth.bluetooth import init_ble
 
 import os
 
@@ -31,11 +32,11 @@ def create_app():
     # Secret key for session management
     app.secret_key = 'REPLACE_WITH_RANDOM_SECRET_KEY'  # use os.urandom(24) in production
 
-
     # Initialize database
     with app.app_context():
         db.create_all()
         load_saved_config()
         config_oauth(app)
+        #init_ble(app)
 
     return app

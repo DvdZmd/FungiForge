@@ -5,6 +5,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
+#TODO create SystemLog model to log system events
+#TODO create CameraSettings model to store camera settings
+#TODO create I2CSettings model to store I2C settings
+#TODO create SmartPlugSettings model to store smart plug settings
+
 class SensorReading(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)

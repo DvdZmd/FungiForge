@@ -2,8 +2,8 @@
 import time
 import threading
 import re
-from i2c.sensors import read_sensors, save_sensor_data
-from config import SENSOR_LOG_INTERVAL, ENABLE_SENSOR_LOGGER
+from sensors.i2c.sensors import read_i2c_sensors, save_sensor_data
+from config import SENSOR_LOG_INTERVAL, ENABLE_SENSOR_LOGGER, COMMUNICATION_TYPE
 from logs.logging_config import logger
 from logs.db_logger import log_error_to_db
 
@@ -22,9 +22,16 @@ def sensor_loop(app):
     while True:
         try:
             with app.app_context():
-                data = read_sensors()
+                # Elegimos la función según el tipo de comunicación
+                if COMMUNICATION_TYPE.upper() == "I2C":
+                    data = read_i2c_sensors()
+                elif COMMUNICATION_TYPE.upper() == "BLUETOOTH":
+                    data = read_bt_sensors()
+                else:
+                    raise ValueError(f"Unknown COMMUNICATION_TYPE: {COMMUNICATION_TYPE}")
+
                 save_sensor_data(data)
-                #logger.info(f"[SensorLogger] Saved: {data}")
+                # logger.info(f"[SensorLogger] Saved: {data}")
         except Exception as e:
             logger.exception("[SensorLogger] Error while logging sensor data")
             log_error_to_db("sensor_logger.py", e)

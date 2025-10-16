@@ -18,6 +18,6 @@ window.onload = () => {
   setupSmartPlug();
 
   // Periodic updates
-  if (window.read_sensors) setInterval(fetchSensorData, 500);
+  if (window.read_i2c_sensors) setInterval(fetchSensorData, 500);
   if (window.read_servos) setInterval(fetchServoPosition, 200);
 };

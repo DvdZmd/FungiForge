@@ -7,7 +7,7 @@ from database.models import SensorReading, db
 i2c_lock = threading.Lock()
 bus = SMBus(1)
 
-def read_sensors():
+def read_i2c_sensors():
     with i2c_lock:
         try:
             # Assuming the Arduino sends data in the format: <temperature_dht: float, humidity: float, temperature_ds18b20: float, soil_moisture: uint16>

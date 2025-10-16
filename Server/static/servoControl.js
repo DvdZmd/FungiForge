@@ -24,7 +24,7 @@ async function moveServo(pan, tilt) {
   servo_pan = Math.max(0, Math.min(180, pan));
 
   try {
-    const response = await fetch(`${apiUrl}/send_pan_tilt`, {
+    const response = await fetch(`${apiUrl}/bluetooth/servos`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ pan: servo_pan, tilt: servo_tilt }),
@@ -41,7 +41,7 @@ async function moveServo(pan, tilt) {
  */
 async function fetchServoPosition() {
   try {
-    const response = await fetch(`${apiUrl}/request_current_pan_tilt`);
+    const response = await fetch(`${apiUrl}/bluetooth/servos`);
     if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
     const data = await response.json();
     servo_pan = data.pan;

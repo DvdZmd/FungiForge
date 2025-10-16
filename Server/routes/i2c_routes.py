@@ -3,10 +3,10 @@ import smbus2
 from datetime import datetime
 from flask import Blueprint, request, jsonify
 from sqlalchemy import and_
-from i2c.sensors import read_sensors, save_sensor_data
-from i2c.servos import set_pan_tilt, get_current_pan_tilt
+from sensors.i2c.sensors import read_i2c_sensors, save_sensor_data
+from sensors.i2c.servos import set_pan_tilt, get_current_pan_tilt
 from database.models import SensorReading
-from config import READ_SENSORS, READ_SERVOS
+from config import READ_I2C_SENSORS, READ_SERVOS
 
 i2c_bp = Blueprint('i2c', __name__)
 
@@ -41,11 +41,12 @@ def send_pan_tilt():
 # ======= READ SENSOR DATA FROM ARDUINO ===========
 @i2c_bp.route('/get_sensors', methods=['GET'])
 def get_sensors():
-    if not READ_SENSORS:
+    if not READ_I2C_SENSORS:
         return jsonify({"error": "Sensor reading is disabled"}), 503
     
     # Read sensor data from the I²C bus
-    sensor_data = read_sensors()
+    sensor_data = read_i2c_sensors()
+    #sensor_data = read_i2c_sensors()
 
     return jsonify(sensor_data)
 

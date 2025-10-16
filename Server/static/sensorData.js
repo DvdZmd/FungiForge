@@ -6,7 +6,8 @@ const apiUrl = `${window.location.protocol}//${window.location.hostname}:5000`;
  */
 export async function fetchSensorData() {
   try {
-    const response = await fetch(`${apiUrl}/get_sensors`);
+    const response = await fetch(`${apiUrl}/bluetooth/get_sensors`);
+    console.log(`${apiUrl}/bluetooth/get_sensors`)
     if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
 
     const data = await response.json();

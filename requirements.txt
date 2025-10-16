@@ -15,6 +15,9 @@ sqlalchemy
 passlib
 authlib
 
+# Bluetooth support
+bleak
+
 # Face recognition
 face_recognition         # Library for face detection and recognition
 
