@@ -57,6 +57,14 @@ READ_SERVOS_INTERVAL = 0.1   # Interval (seconds) for servo polling
 SENSOR_LOG_INTERVAL = '1m'  # Options: '10s', '30s', '1m', '5m', '1h'
 ENABLE_SENSOR_LOGGER = True
 
+# Bluetooth Configuration (ESP32)
+ESP32_BLE_NAME = "FungiForge-ESP32"    # O la MAC/ADDRESS: si usas ADDRESS, puedes saltar el escaneo por nombre
+ESP32_BLE_ADDRESS = None               # opcional, si prefieres usar la dirección fija
+ESP32_SENSOR_CHAR_UUID = "0000aaaa-0000-1000-8000-00805f9b34fb"
+ESP32_SERVO_CHAR_UUID  = "0000bbbb-0000-1000-8000-00805f9b34fb"
+ESP32_PAN_TILT_CHAR_UUID = ESP32_SERVO_CHAR_UUID  # si usas la misma para read/write
+ESP32_RECONNECT_INTERVAL = 5  # segundos
+
 # Smart Plug Configuration (TinyTuya)
 SMARTPLUG_DEVICE_ID = ''     # Tuya device ID
 SMARTPLUG_IP = ''                    # Smart plug IP address
