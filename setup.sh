@@ -18,7 +18,7 @@ echo "Installing required system dependencies..."
 sudo apt install -y \
   libcamera-dev libcamera-apps python3-libcamera \
   python3-picamera2 python3-kms++ \
-  python3-venv python3-dev libcap-dev libatlas-base-dev libopenjp2-7 libtiff-dev cmake
+  python3-venv python3-dev libcap-dev libopenblas-dev libopenjp2-7 libtiff-dev cmake
 
 #-------------------------------------------
 # Python virtual environment setup

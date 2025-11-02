@@ -15,9 +15,6 @@ sqlalchemy
 passlib
 authlib
 
-# Face recognition
-face_recognition         # Library for face detection and recognition
-
 # Smart plug control
 tinytuya                # Library for controlling Tuya-based smart plugs and device
 #tuya-connector
