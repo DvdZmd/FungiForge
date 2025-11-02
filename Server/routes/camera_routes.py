@@ -17,8 +17,38 @@ timelapse_stop_event = Event()
 camera_stream_enabled = True  # global control
 rotation_angle = 0
 
-face_locations = []  # Compartido entre hilos
-face_lock = Lock()  # Para sincronizar el acceso a face_locations
+
+@camera_bp.route("/camera/config", methods=["GET"])
+def get_config():
+    controls = picam2.camera_controls  # diccionario disponible
+    # También devolver valores actuales si llevás un store de estado
+    return jsonify({
+        "available_controls": list(controls.keys()),
+        "size": video_config["main"]["size"]  # ejemplo, adaptá según estructura
+    })
+
+@camera_bp.route("/camera/config", methods=["POST"])
+def set_config():
+    data = request.json or {}
+    # si viene size -> reconfigure
+    if "size" in data:
+        new_size = tuple(data["size"])
+        # stop -> re-create video_config with new size -> configure -> start
+        picam2.stop()
+        new_video_config = picam2.create_video_configuration(main={"size": new_size}, controls={})
+        picam2.configure(new_video_config)
+        picam2.start()
+    # otros controles en caliente
+    controls_to_set = {}
+    for k in ["FrameRate", "ExposureTime", "AnalogueGain", "AfMode", "NoiseReductionMode", "AwbMode"]:
+        if k in data:
+            controls_to_set[k] = data[k]
+    if controls_to_set:
+        picam2.set_controls(controls_to_set)
+    return jsonify({"ok": True})
+
+
+
 
 @camera_bp.route('/toggle_camera', methods=['POST'])
 def toggle_camera():
